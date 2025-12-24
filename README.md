@@ -172,6 +172,17 @@ firebase functions:secrets:set LINE_CHANNEL_ID
 
 Then enter the secret value (the Line channel ID for production). You can check the added value by running `firebase functions:secrets:access LINE_CHANNEL_ID`.
 
+### Google Cloud
+
+- Go to IAM console and look for service account *-compute@developer.gserviceaccount.com
+- Click manage permission and add "Service Account Token Creator" role
+
+The `createCustomToken` requires the role, otherwise you will see error from functions log with this error:
+
+```
+Error authenticating LINE user: FirebaseAuthError: Permission 'iam.serviceAccounts.signBlob' denied on resource (or it may not exist).; Please refer to https://firebase.google.com/docs/auth/admin/create-custom-tokens for more details on how to use and troubleshoot this feature
+```
+
 ### Rules
 
 - Copy the rules from `firestore.rules` file
